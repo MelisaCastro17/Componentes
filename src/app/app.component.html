@@ -1,0 +1,112 @@
+
+<!--Select-->
+<mat-form-field>
+    <mat-label>Selecciona un modelo de Moto </mat-label>
+    
+      <mat-select [(value)]="opcion">
+      <li><mat-option>None</mat-option>
+      <mat-option value="honda">Honda</mat-option>
+      <mat-option value="suzuki">Susuki</mat-option>
+      <mat-option value="pulsar">Pulsar</mat-option>
+      <mat-option value="apache">Apache</mat-option>
+      <mat-option value="kawasaki">Kawasaki</mat-option>
+      <mat-option value="ducati">Ducati</mat-option>
+      <mat-option value="yamaha">Yamaha</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <p>Elegiste: {{opcion}}</p>
+  <hr>
+  <br>
+  <!--Radio button-->
+  <label id="example-radio-group-label">Elige tu pais favorito</label>
+  <br>
+  <br>
+  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+      {{season}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <br>
+  <div>Tu color favorito es:
+    {{favoriteSeason}}</div>
+  <br>
+  <hr>
+  <br>
+  
+  <div>De 1 a 20 => ¿qué tal el estilo del sitio web?</div>
+  <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="20"></mat-slider>
+  <br>
+  <hr>
+  <!--input-->
+  <mat-form-field>
+    <mat-label>Tamaño de la fuente</mat-label>
+    <mat-select #fontSize value="16px" (selectionChange)="triggerResize()">
+      <mat-option value="10px">10px</mat-option>
+      <mat-option value="15px">15px</mat-option>
+      <mat-option value="20px">20px</mat-option>
+      <mat-option value="25px">25px</mat-option>
+      <mat-option value="30px">30px</mat-option>
+      <mat-option value="35px">35px</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field [style.fontSize]="fontSize.value">
+    <mat-label>Area de texto </mat-label>
+    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
+  <br>
+  <hr>
+  <!--Form field-->
+  <br>
+  <div class="example-container">
+    <mat-form-field>
+      <input  matInput placeholder="Nombre">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <textarea matInput placeholder="Apellido"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" [formControl]="email">
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <br>
+  <!--Datepicker-->
+  <hr>
+  <br>
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <hr>
+    <!--checkbox-->
+    <br>
+    <mat-checkbox>Mujer</mat-checkbox>
+    <mat-checkbox>Hombre</mat-checkbox>
+    <mat-checkbox>Otro</mat-checkbox>
+    <mat-checkbox>Indefinido</mat-checkbox>
+    <br>
+    <hr>
+    <br>
+  <!--Autocomplete-->
+  <br>
+  <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Formacion academica" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  <br>
+  <hr>
+  <br>
+  <mat-slide-toggle>¿Te gusto el sitio?</mat-slide-toggle>
